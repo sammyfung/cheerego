@@ -1,6 +1,7 @@
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
-#import sys
+from cheerego.items import CheeregoItem
+from datetime import datetime
 
 class CheerboardSpider(BaseSpider):
     name = "cheerboard"
@@ -16,5 +17,9 @@ class CheerboardSpider(BaseSpider):
         fullmsg = ''
         for i in msg:
           fullmsg += i
-          #sys.stdout.write(i)
-        print fullmsg
+        cheer = CheeregoItem()
+        cheer['scraptime'] = datetime.now()
+        cheer['posttime'] = cheer['scraptime']
+        cheer['poster'] = u'cheer'
+        cheer['message'] = fullmsg
+      return cheer

@@ -1,11 +1,11 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# http://doc.scrapy.org/topics/items.html
-
 from scrapy.item import Item, Field
+from scrapy.contrib.djangoitem import DjangoItem
+from cheerweb.models import CheerBoard
 
-class CheeregoItem(Item):
-    # define the fields for your item here like:
-    # name = Field()
-    pass
+#class CheeregoItem(Item):
+#    scraptime = Field()
+#    message = Field()
+
+class CheeregoItem(DjangoItem):
+  django_model = CheerBoard 
+
