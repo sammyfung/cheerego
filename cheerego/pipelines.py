@@ -1,5 +1,6 @@
 from scrapy.exceptions import DropItem
-from cheerweb.models import CheerBoard
+from cheerbook.models import CheerBoard
+
 
 class CheeregoPipeline(object):
     def process_item(self, item, spider):
