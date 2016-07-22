@@ -4,9 +4,8 @@ from cheerbook.models import CheerBoard
 
 class CheeregoPipeline(object):
     def process_item(self, item, spider):
-        lastid = len(CheerBoard.objects.all())
-        if not CheerBoard.objects.filter(id = lastid, message = item['message']):
-          item.save()
+        last_msg = CheerBoard.objects.all().order_by("-pk")[0]
+        if item['message'] != last_msg.message:
+            item.save()
         else:
-          raise DropItem("duplicated message with last message - id %s."% (lastid))
-        return item
+            raise DropItem("duplicated message with last message - id %s."% (lastid))
