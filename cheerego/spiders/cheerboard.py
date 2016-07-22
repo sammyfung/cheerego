@@ -18,8 +18,6 @@ class CheerboardSpider(scrapy.Spider):
             fullmsg = ''
             for i in msg:
                 fullmsg += i
-            fullmsg = re.sub('\r\n', '\r\n<br />', fullmsg)
-            fullmsg = re.sub('\n', '\n<br />', fullmsg)
             cheer = CheeregoItem()
             cheer['scraptime'] = timezone.now()
             cheer['posttime'] = cheer['scraptime']
