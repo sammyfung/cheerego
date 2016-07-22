@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from scrapy.exceptions import DropItem
 from cheerbook.models import CheerBoard
 
@@ -8,4 +9,5 @@ class CheeregoPipeline(object):
         if item['message'] != last_msg.message:
             item.save()
         else:
-            raise DropItem("duplicated message with last message - id %s."% (lastid))
+            raise DropItem("duplicated message with last message - id %s."% (last_msg.pk))
+        return item
