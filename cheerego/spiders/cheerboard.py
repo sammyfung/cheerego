@@ -12,7 +12,7 @@ class CheerboardSpider(scrapy.Spider):
 
     def parse(self, response):
       hxs = scrapy.selector.Selector(response)
-      msg = hxs.select('//div[contains(@class,"reply_content_demo")]/text()').extract()
+      msg = hxs.xpath('//div[contains(@class,"reply_content_demo")]/text()').extract()
       if (msg > 0):
         fullmsg = ''
         for i in msg:
