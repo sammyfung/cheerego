@@ -1,9 +1,9 @@
-from scrapy.spider import BaseSpider
-from scrapy.selector import HtmlXPathSelector
+import scrapy
 from cheerego.items import CheeregoItem
 from datetime import datetime
 
-class CheerboardSpider(BaseSpider):
+
+class CheerboardSpider(scrapy.Spider):
     name = "cheerboard"
     allowed_domains = ["cheerego.com"]
     start_urls = (
@@ -11,7 +11,7 @@ class CheerboardSpider(BaseSpider):
     )
 
     def parse(self, response):
-      hxs = HtmlXPathSelector(response)
+      hxs = scrapy.selector.Selector(response)
       msg = hxs.select('//div[contains(@class,"reply_content_demo")]/text()').extract()
       if (msg > 0):
         fullmsg = ''
